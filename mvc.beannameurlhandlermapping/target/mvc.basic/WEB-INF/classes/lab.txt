@@ -1,0 +1,58 @@
+1.create a sample maven project
+maven-archtype-web
+2.put a simple simple servlet mapping in web.xml
+<servlet>
+        <servlet-name>helloworld</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>helloworld</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+3. create the webapplication context, i.e the servlet context root based on servlet name :
+key=helloworld
+helloworld-servlet.xml
+ keep the view resolver specific bean identified by dispatcher servlet.
+ <bean id="viewResolver"
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/pages/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+4.
+copy the dependecies:
+<properties>
+        <org.springframework-version>3.0.5.RELEASE</org.springframework-version>
+    </properties>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- Spring framework -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+
+        <!-- Spring MVC framework -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+  </dependencies>
+  
